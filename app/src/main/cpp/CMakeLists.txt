@@ -5,7 +5,7 @@ project(yolo_ncnn_jni)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(NCNN_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../../third_party/ncnn-android-shared/ncnn-20260113-android-shared/arm64-v8a/include")
+set(NCNN_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../../third_party/ncnn-android-shared/ncnn-20260113-android-shared/${ANDROID_ABI}/include")
 set(NCNN_SHARED_LIB "${CMAKE_CURRENT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libncnn.so")
 
 add_library(ncnn SHARED IMPORTED)

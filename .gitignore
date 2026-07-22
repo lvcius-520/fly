@@ -22,11 +22,11 @@ local.properties
 app/wrapper/
 wrapper/
 third_party/*.zip
-third_party/ncnn-android-shared/ncnn-20260113-android-shared/armeabi-v7a/
+third_party/ncnn-android-shared/ncnn-20260113-android-shared/arm64-v8a/lib/
+third_party/ncnn-android-shared/ncnn-20260113-android-shared/armeabi-v7a/lib/
 third_party/ncnn-android-shared/ncnn-20260113-android-shared/riscv64/
 third_party/ncnn-android-shared/ncnn-20260113-android-shared/x86/
 third_party/ncnn-android-shared/ncnn-20260113-android-shared/x86_64/
-third_party/ncnn-android-shared/ncnn-20260113-android-shared/arm64-v8a/lib/
 build_*.txt
 build_log*.txt
 test_log.txt
