@@ -1,0 +1,123 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace 'com.yuanjieflycontr'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.yuanjieflycontr"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.1'
+    }
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += 'dji/thirdparty/okhttp3/internal/publicsuffix/publicsuffixes.gz'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file("src/main/cpp/CMakeLists.txt")
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.activity.compose
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.ui
+    implementation libs.androidx.ui.graphics
+    implementation libs.androidx.ui.tooling.preview
+    implementation libs.androidx.material3
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation 'org.tensorflow:tensorflow-lite:2.12.0'
+
+    // Required support libs for DJI SDK resources
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation platform(libs.androidx.compose.bom)
+    androidTestImplementation libs.androidx.ui.test.junit4
+    debugImplementation libs.androidx.ui.tooling
+    debugImplementation libs.androidx.ui.test.manifest
+
+    // DJI SDK
+    compileOnly 'com.dji:dji-sdk-provided:4.16.4'
+    implementation 'com.dji:dji-sdk:4.16.4'
+
+    // AMap 3D Map SDK
+    implementation 'com.amap.api:3dmap:9.8.3'
+    // AMap Location SDK (Included in 3dmap, commenting out to avoid duplicate class error)
+    // implementation 'com.amap.api:location:6.4.2'
+
+    implementation 'io.coil-kt:coil-compose:2.6.0'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+}
+
+android {
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+        doNotStrip "*/libdjivideo.so"
+        doNotStrip "*/libSDKRelativeJNI.so"
+        doNotStrip "*/libFlyForbid.so"
+        doNotStrip "*/libduml_vision_bokeh.so"
+        doNotStrip "*/libyuv2.so"
+        doNotStrip "*/libGroudStation.so"
+        doNotStrip "*/libIRCorkscrew.so"
+        doNotStrip "*/libUpgradeVerify.so"
+        doNotStrip "*/libFR.so"
+        doNotStrip "*/libDJIFlySafeCore.so"
+        doNotStrip "*/libdjifs_jni.so"
+        doNotStrip "*/libsfjni.so"
+        exclude 'META-INF/rxjava.properties'
+    }
+}
