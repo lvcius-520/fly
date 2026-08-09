@@ -1,0 +1,17 @@
+{
+  "name": "fly-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "desktop/web",
+    "packages/shared"
+  ],
+  "scripts": {
+    "build:shared": "npm --workspace packages/shared run build",
+    "dev:server": "desktop\\server-springboot\\gradlew.bat bootRun",
+    "dev:web": "npm run build:shared && npm --workspace desktop/web run dev",
+    "build:server": "desktop\\server-springboot\\gradlew.bat build",
+    "build:web": "npm run build:shared && npm --workspace desktop/web run build",
+    "build:desktop": "npm run build:server && npm run build:web"
+  }
+}

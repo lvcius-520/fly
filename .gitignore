@@ -30,3 +30,15 @@ third_party/ncnn-android-shared/ncnn-20260113-android-shared/x86_64/
 build_*.txt
 build_log*.txt
 test_log.txt
+node_modules/
+.trae/
+desktop/_tmp/
+desktop/**/dist/
+desktop/**/.vite/
+desktop/**/coverage/
+desktop/web/.env.local
+desktop/server/runtime/
+desktop/server-springboot/.gradle/
+desktop/server-springboot/runtime/
+packages/shared/dist/
+packages/shared/*.tsbuildinfo
